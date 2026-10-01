@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>囚犯档案 · RBQ-114 维克多·卡莱尔</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Special+Elite&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  :root {
+    --paper:      #cdc5ae;
+    --ink:        #24211c;
+    --ink-soft:   #55503f;
+    --ink-faint:  #837a63;
+    --line:       rgba(60, 52, 38, .35);
+    --stamp:      #a52a1e;
+  }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    padding: clamp(14px, 3.5vw, 56px) clamp(10px, 3vw, 36px) clamp(40px, 6vw, 80px);
+    background-color: #131416;
+    background-image:
+      radial-gradient(ellipse 80% 55% at 50% -8%, rgba(120,130,145,.14), transparent 70%),
+      radial-gradient(ellipse 70% 60% at 50% 108%, rgba(90,100,115,.10), transparent 70%),
+      repeating-linear-gradient(92deg, rgba(255,255,255,.018) 0 2px, transparent 2px 6px),
+      linear-gradient(165deg, #232528 0%, #131416 55%, #0d0e10 100%);
+    font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ============ 金属背板 ============ */
+  .board {
+    position: relative;
+    width: min(920px, 100%);
+    margin: auto;
+  }
+
+  .rivet {
+    position: absolute;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    z-index: 50;
+    background: radial-gradient(circle at 34% 30%, #6b7078, #2c3035 62%, #16181b);
+    box-shadow:
+      0 2px 4px rgba(0,0,0,.7),
+      inset 0 1px 1px rgba(255,255,255,.28);
+  }
+  .r-tl { top: 10px; left: 10px; }
+  .r-tr { top: 10px; right: 10px; }
+  .r-bl { bottom: 10px; left: 10px; }
+  .r-br { bottom: 10px; right: 10px; }
+
+  /* ============================================================
+     堆叠容器
+     ============================================================ */
+  .stack {
+    position: relative;
+  }
+
+  /* ============ 囚犯简介（主卡片） ============ */
+  .file {
+    position: relative;
+    z-index: 10;
+    width: 80%;
+    margin: 0 auto;
+    padding: clamp(24px, 4.2vw, 50px) clamp(18px, 3.8vw, 48px) clamp(22px, 3.2vw, 40px);
+    background-color: var(--paper);
+    background-image:
+      radial-gradient(ellipse 68% 46% at 18% 6%,  rgba(255,252,242,.55), transparent 62%),
+      radial-gradient(ellipse 62% 50% at 88% 94%, rgba(120,104,74,.26), transparent 66%),
+      radial-gradient(ellipse 40% 40% at 96% 4%,  rgba(130,112,80,.20), transparent 62%),
+      radial-gradient(ellipse 40% 40% at 2% 96%,  rgba(130,112,80,.18), transparent 62%),
+      linear-gradient(160deg, #d6cfba 0%, #c9c1aa 50%, #bab195 100%);
+    box-shadow:
+      0 34px 66px -30px rgba(0,0,0,.92),
+      0 0 0 1px rgba(0,0,0,.55),
+      inset 0 0 70px rgba(105,88,58,.30),
+      inset 0 0 14px rgba(105,88,58,.26);
+    border-radius: 2px;
+    animation: dropIn .7s cubic-bezier(.2,.85,.3,1) both;
+    transition: box-shadow .4s ease;
+  }
+
+  .file.is-covered { cursor: pointer; }
+  .file.is-covered:hover {
+    box-shadow:
+      0 34px 66px -30px rgba(0,0,0,.92),
+      0 0 0 1px rgba(0,0,0,.55),
+      0 0 0 3px rgba(200, 170, 120, .22),
+      inset 0 0 70px rgba(105,88,58,.30),
+      inset 0 0 14px rgba(105,88,58,.26);
+  }
+
+  .file::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: .5;
+    mix-blend-mode: multiply;
+    border-radius: 2px;
+    background-size: 180px 180px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  }
+
+  .punch {
+    position: absolute;
+    left: clamp(7px, 1.4vw, 16px);
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    z-index: 4;
+    background: radial-gradient(circle at 40% 35%, #6d6552, #2b271f 70%);
+    box-shadow:
+      inset 0 1px 2px rgba(0,0,0,.8),
+      0 1px 0 rgba(255,250,235,.35);
+  }
+  .p-1 { top: 18%; }
+  .p-2 { top: 46%; }
+  .p-3 { top: 74%; }
+
+  .file-body { position: relative; z-index: 3; }
+
+  /* ---- 页眉 ---- */
+  .file-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .agency-name {
+    display: block;
+    font-size: clamp(14px, 2.4vw, 19px);
+    font-weight: 900;
+    letter-spacing: .16em;
+    color: var(--ink);
+  }
+  .agency-en {
+    display: block;
+    margin-top: 5px;
+    font-family: "Special Elite", "Courier New", monospace;
+    font-size: clamp(8px, 1.4vw, 10.5px);
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .file-type { text-align: right; }
+  .file-type strong {
+    display: block;
+    font-family: "Oswald", sans-serif;
+    font-size: clamp(19px, 3.4vw, 28px);
+    font-weight: 700;
+    letter-spacing: .12em;
+    line-height: 1;
+    color: #1b1915;
+  }
+  .file-type span {
+    display: block;
+    margin-top: 4px;
+    font-family: "Special Elite", monospace;
+    font-size: clamp(8px, 1.4vw, 10.5px);
+    letter-spacing: .26em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .stamp {
+    display: inline-block;
+    padding: 5px 11px;
+    border: 2px solid var(--stamp);
+    border-radius: 3px;
+    font-family: "Oswald", sans-serif;
+    font-weight: 700;
+    font-size: clamp(9px, 1.5vw, 12px);
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--stamp);
+    opacity: .72;
+    transform: rotate(-9deg);
+    mix-blend-mode: multiply;
+    box-shadow: inset 0 0 0 1px rgba(165,42,30,.5);
+  }
+  .stamp-wrap { flex: 0 0 auto; padding-top: 4px; }
+
+  .rule-thick {
+    height: 3px;
+    margin: clamp(14px, 2.4vw, 22px) 0 clamp(18px, 3vw, 28px);
+    background: var(--ink);
+    opacity: .82;
+  }
+  .rule-thin {
+    height: 1px;
+    margin: clamp(18px, 3vw, 28px) 0;
+    background: repeating-linear-gradient(90deg, var(--line) 0 8px, transparent 8px 14px);
+  }
+
+  /* ---- 生物信息 ---- */
+  .bio {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: clamp(16px, 3vw, 34px);
+    align-items: start;
+  }
+
+  .mugshot {
+    position: relative;
+    width: clamp(130px, 22vw, 178px);
+    aspect-ratio: 3 / 4;
+    border: 1px solid rgba(50,44,32,.55);
+    background: #b9b19a;
+    overflow: hidden;
+    box-shadow: inset 0 0 24px rgba(70,60,40,.35), 0 3px 8px rgba(0,0,0,.22);
+  }
+
+  .ruler {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-image: linear-gradient(to bottom, rgba(40,36,26,.30) 0 1px, transparent 1px);
+    background-size: 100% 16.6667%;
+  }
+  .ruler span {
+    position: absolute;
+    left: 4px;
+    transform: translateY(-50%);
+    font-family: "Special Elite", monospace;
+    font-size: 7.5px;
+    letter-spacing: .04em;
+    color: rgba(40,36,26,.62);
+  }
+
+  .mugshot img {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+
+  .placard {
+    position: absolute;
+    left: 50%;
+    bottom: 8px;
+    z-index: 3;
+    transform: translateX(-50%);
+    padding: 2px 8px;
+    background: #e8e4d6;
+    border: 1px solid rgba(40,36,26,.5);
+    font-family: "Special Elite", monospace;
+    font-size: 9.5px;
+    letter-spacing: .12em;
+    color: #1e1c17;
+    white-space: nowrap;
+  }
+
+  .fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(10px, 1.6vw, 16px) clamp(12px, 2.4vw, 26px);
+    min-width: 0;
+  }
+  .field { min-width: 0; }
+  .field.wide { grid-column: 1 / -1; }
+
+  .field dt {
+    font-family: "Special Elite", monospace;
+    font-size: 9px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 3px;
+  }
+  .field dd {
+    margin: 0;
+    font-size: clamp(12px, 1.8vw, 14.5px);
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--ink);
+    overflow-wrap: break-word;
+  }
+  .field dd.normal { font-weight: 400; font-size: clamp(11.5px, 1.7vw, 13.5px); color: var(--ink-soft); }
+
+  /* 放大的姓名 / 编号 */
+  .field dd.big {
+    font-size: clamp(17px, 2.7vw, 24px);
+    font-weight: 900;
+    line-height: 1.25;
+    letter-spacing: .03em;
+    color: #17140f;
+  }
+  .field dd.big.code {
+    font-family: "Oswald", "Special Elite", monospace;
+    font-weight: 700;
+    letter-spacing: .12em;
+  }
+
+  .danger { color: var(--stamp); letter-spacing: .12em; }
+
+  /* ---- 下半部分 ---- */
+  .lower {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: clamp(18px, 3.4vw, 40px);
+  }
+
+  .col h2 {
+    margin: 0 0 12px;
+    padding-bottom: 7px;
+    font-size: clamp(12px, 1.8vw, 14.5px);
+    font-weight: 900;
+    letter-spacing: .2em;
+    color: #1b1915;
+    border-bottom: 2px solid rgba(40,36,26,.7);
+  }
+  .col h2 em {
+    display: block;
+    margin-top: 3px;
+    font-family: "Special Elite", monospace;
+    font-style: normal;
+    font-size: 8.5px;
+    font-weight: 400;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .record-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: rec;
+  }
+  .record-list li {
+    position: relative;
+    counter-increment: rec;
+    padding-left: 2.1em;
+    margin-bottom: 10px;
+    font-size: clamp(12px, 1.6vw, 13.5px);
+    line-height: 1.85;
+    color: var(--ink-soft);
+  }
+  .record-list li:last-child { margin-bottom: 0; }
+  .record-list li::before {
+    content: counter(rec, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: "Special Elite", monospace;
+    font-size: 10.5px;
+    color: var(--ink-faint);
+  }
+  .record-list b { color: var(--ink); font-weight: 700; }
+
+  .skill-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .skill-list li {
+    position: relative;
+    padding-left: 1.35em;
+    margin-bottom: 8px;
+    font-size: clamp(12px, 1.6vw, 13.5px);
+    line-height: 1.8;
+    color: var(--ink-soft);
+  }
+  .skill-list li:last-child { margin-bottom: 0; }
+  .skill-list li::before {
+    content: "";
+    position: absolute;
+    left: .15em;
+    top: .68em;
+    width: 6.5px; height: 6.5px;
+    border: 1.5px solid rgba(60,52,38,.7);
+  }
+
+  .notes {
+    margin-top: clamp(18px, 3vw, 28px);
+    padding: clamp(12px, 2.2vw, 18px) clamp(13px, 2.4vw, 20px);
+    border-left: 4px solid rgba(165,42,30,.72);
+    background: rgba(150,132,96,.20);
+  }
+  .notes h2 {
+    margin: 0 0 8px;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .2em;
+    color: #1b1915;
+  }
+  .notes h2 span {
+    font-family: "Special Elite", monospace;
+    font-weight: 400;
+    font-size: 8.5px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-left: 6px;
+  }
+  .notes p {
+    margin: 0;
+    font-size: clamp(12px, 1.6vw, 13.5px);
+    line-height: 1.95;
+    color: var(--ink-soft);
+  }
+
+  /* ---- 页脚 ---- */
+  .file-foot {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: clamp(20px, 3.2vw, 34px);
+    padding-top: clamp(14px, 2.4vw, 22px);
+    border-top: 1px solid rgba(60,52,38,.4);
+  }
+
+  /* 指纹图片：把下面 img 的 src 换成你自己的图片即可 */
+  .fingerprint {
+    flex: 0 0 auto;
+    width: 56px;
+    opacity: .7;
+    mix-blend-mode: multiply;
+  }
+  .fingerprint img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* 条形码图片：把下面 img 的 src 换成你自己的图片即可 */
+  .barcode {
+    flex: 0 1 auto;
+    width: clamp(100px, 18vw, 140px);
+    opacity: .8;
+    mix-blend-mode: multiply;
+  }
+  .barcode img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .sign-block { flex: 1 1 150px; min-width: 140px; }
+  .sign-block .line {
+    height: 1px;
+    background: rgba(60,52,38,.62);
+    margin-bottom: 6px;
+  }
+  .sign-block span {
+    font-family: "Special Elite", monospace;
+    font-size: 9px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .seal {
+    flex: 0 0 auto;
+    width: 66px; height: 66px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    font-family: "Oswald", sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1.15;
+    letter-spacing: .1em;
+    color: rgba(165,42,30,.85);
+    border: 2px solid rgba(165,42,30,.75);
+    box-shadow: inset 0 0 0 2px rgba(165,42,30,.35), inset 0 0 14px rgba(165,42,30,.18);
+    transform: rotate(-11deg);
+    opacity: .8;
+    mix-blend-mode: multiply;
+    transition: transform .3s ease;
+  }
+  .seal:hover { transform: rotate(-11deg) scale(1.06); }
+
+  /* ============================================================
+     入狱照：比简介略小，堆叠在简介后方，只露出右上角
+     ============================================================ */
+  .shot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 72%;
+    margin: 0;
+    padding: 11px 11px 0;
+    background: linear-gradient(160deg, #f3eddc 0%, #e2dac4 60%, #d3c9b0 100%);
+    border: 1px solid rgba(60,52,38,.42);
+    border-radius: 2px;
+    cursor: pointer;
+    transform-origin: 0 0;
+    will-change: transform;
+    -webkit-tap-highlight-color: transparent;
+    transition:
+      transform .72s cubic-bezier(.22,.9,.28,1),
+      box-shadow .45s ease;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.6),
+      0 14px 26px -14px rgba(0,0,0,.55);
+    z-index: 1;
+    animation: shotFade .55s ease backwards;
+  }
+  .shot:nth-child(2) { animation-delay: .10s; }
+  .shot:nth-child(3) { animation-delay: .18s; }
+  .shot:nth-child(4) { animation-delay: .26s; }
+  .shot:nth-child(5) { animation-delay: .34s; }
+
+  .shot.is-top {
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.7),
+      0 40px 68px -24px rgba(0,0,0,.68),
+      0 10px 20px rgba(0,0,0,.3);
+  }
+
+  .shot-tag {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    z-index: 5;
+    padding: 4px 11px;
+    background: rgba(246, 241, 228, .96);
+    border: 1px solid rgba(60,52,38,.55);
+    border-radius: 1px;
+    font-family: "Special Elite", monospace;
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #3a3025;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0,0,0,.22);
+  }
+
+  .shot-frame {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background: #b3ac96;
+    border: 1px solid rgba(50,44,32,.42);
+  }
+  .shot-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse 78% 68% at 50% 46%, transparent 40%, rgba(35,28,18,.34) 100%);
+  }
+  .shot-frame img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter .5s ease;
+  }
+  .shot.is-top .shot-frame img {
+  }
+
+  @keyframes shotFade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* ============ 底部提示 ============ */
+  .stack-hint {
+    margin: 14px 0 0;
+    padding: 0;
+    font-family: "Special Elite", monospace;
+    font-size: 9.5px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: rgba(190, 180, 160, .55);
+    text-align: center;
+  }
+  .stack-hint::before {
+    content: "▸ ";
+    color: rgba(165,42,30,.75);
+  }
+
+  /* ============ 动画 ============ */
+  @keyframes dropIn {
+    from { opacity: 0; transform: translateY(-18px) rotate(-.6deg); }
+    to   { opacity: 1; transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .file, .shot { animation: none; }
+    .shot { transition: none; }
+  }
+
+  /* ============ 响应式 ============ */
+  @media (max-width: 720px) {
+    .file { width: 84%; }
+    .shot { width: 76%; }
+  }
+
+  @media (max-width: 640px) {
+    .lower { grid-template-columns: 1fr; gap: 22px; }
+    .file-foot { justify-content: flex-start; }
+    .seal { margin-left: auto; }
+  }
+
+  @media (max-width: 520px) {
+    .file { width: 88%; padding-left: 16px; padding-right: 16px; }
+    .shot { width: 80%; }
+    .bio { grid-template-columns: 1fr; }
+    .mugshot { width: min(180px, 55%); margin: 0 auto; }
+    .fields { grid-template-columns: 1fr; }
+    .field dd.big { font-size: 17px; }
+    .file-type { text-align: left; }
+    .stamp-wrap { order: 3; }
+    .shot-tag { font-size: 8.5px; padding: 3px 7px; top: 13px; right: 13px; }
+  }
+
+  /* ============ 打印 ============ */
+  @media print {
+    body { background: #fff; padding: 0; display: block; }
+    .file { box-shadow: none; animation: none; width: 100%; }
+    .rivet { display: none; }
+    .shot { display: none; }
+  }
+</style>
+</head>
+
+<body>
+  <div class="board">
+    <span class="rivet r-tl"></span>
+    <span class="rivet r-tr"></span>
+    <span class="rivet r-bl"></span>
+    <span class="rivet r-br"></span>
+
+    <!-- ============================================================
+         堆叠容器：简介在上层，四张入狱照压在下面只露出右上角
+         ============================================================ -->
+    <div class="stack" id="stack">
+
+      <!-- ===== 囚犯简介 ===== -->
+      <article class="file" id="fileCard">
+        <span class="punch p-1"></span>
+        <span class="punch p-2"></span>
+        <span class="punch p-3"></span>
+
+        <div class="file-body">
+
+          <header class="file-head">
+            <div>
+              <span class="agency-name">恋活劳动改造监狱</span>
+              <span class="agency-en">Koikatsu Sex Penitentiary &middot; Records Dept.</span>
+            </div>
+
+            <div class="file-type">
+              <strong>囚犯档案</strong>
+              <span>Inmate Record</span>
+            </div>
+
+            <div class="stamp-wrap">
+              <span class="stamp">绝密 · Classified</span>
+            </div>
+          </header>
+
+          <div class="rule-thick"></div>
+
+          <section class="bio">
+            <figure class="mugshot">
+              <div class="ruler" aria-hidden="true">
+                <span style="top:0%">2.0</span>
+                <span style="top:16.67%">1.9</span>
+                <span style="top:33.33%">1.8</span>
+                <span style="top:50%">1.7</span>
+                <span style="top:66.67%">1.6</span>
+                <span style="top:83.33%">1.5</span>
+                <span style="top:100%">1.4</span>
+              </div>
+
+              <!-- 主照片：把 src 换成你自己的图片即可 -->
+              <img src="01.png" alt="囚犯正面照" />
+
+              <figcaption class="placard">RBQ-114</figcaption>
+            </figure>
+
+            <dl class="fields">
+              <!-- 姓名：已放大 -->
+              <div class="field wide">
+                <dt>姓 名 / Name</dt>
+                <dd class="big">源赖光</dd>
+              </div>
+
+              <!-- 囚犯编号：已放大，单独一行 -->
+              <div class="field wide">
+                <dt>囚犯编号 / No.</dt>
+                <dd class="big code">RBQ-114</dd>
+              </div>
+
+              <div class="field wide">
+                <dt>罪 名 / Charges</dt>
+                <dd class="normal">非法英灵召唤·公共场合裸体·强制魔力榨取·袭警</dd>
+              </div>
+
+              <div class="field">
+                <dt>刑 期 / Sentence</dt>
+                <dd>57 年<span class="normal" style="font-weight:400;font-size:.82em;">（不可假释）</span></dd>
+              </div>
+
+              <div class="field">
+                <dt>危险等级 / Threat</dt>
+                <dd class="danger">★★☆☆☆ 较低</dd>
+              </div>
+
+              <div class="field">
+                <dt>入狱日期 / Intake</dt>
+                <dd>新历 47 年 3 月 12 日</dd>
+              </div>
+
+              <div class="field">
+                <dt>服刑区域 / Block</dt>
+                <dd>D 区 · 地下三层 · 007 号</dd>
+              </div>
+            </dl>
+          </section>
+
+          <div class="rule-thin"></div>
+
+          <section class="lower">
+            <div class="col">
+              <h2>犯罪记录<em>Criminal Record</em></h2>
+              <ol class="record-list">
+                <li><b>新历 46 年</b> — 于旧城区违法响应召唤后逃脱。</li>
+                <li><b>新历 47 年</b> — 深夜被举报由一名黑人男性使用狗绳牵引，于公园处游荡。</li>
+                <li><b>新历 47 年</b> — 于工作日上午全裸出现在商店街，身体布满纹身与浑浊体液，逮捕过程中轻微抵抗。</li>
+                <li><b>新历 47 年</b> — 狱中袭警，扑到狱警强制榨取“魔力”。</li>
+              </ol>
+            </div>
+
+            <div class="col">
+              <h2>刑罚判决<em>Judgment</em></h2>
+              <ul class="skill-list">
+                <li>判处于D区服常规刑（已重新判决）</li>
+                <li><p>
+              判处弱化英灵灵基力量，并分配至D区地下三层7号厕所，执行性欲处理。
+            </p></li>
+                
+              </ul>
+            </div>
+          </section>
+
+          <section class="notes">
+            <h2>狱警备注 <span>Warden&rsquo;s Note</span></h2>
+            <p>
+              此囚犯为非法召唤英灵，被原御主调教后弃置于商业街。经灵基弱化后囚犯力量大幅减弱，已无反抗威胁。
+			  囚犯入狱前遭遇长期调教，灵基已变形，需定期“内射性交”补充魔力，建议分配性处理工作。
+            </p>
+          </section>
+
+          <footer class="file-foot">
+
+            <!-- ============================================================
+                 指纹图片：把下面 img 的 src 换成你自己的指纹图片即可
+                 ============================================================ -->
+            <div class="fingerprint">
+              <img
+                src="10.png"
+                alt="指纹记录" />
+            </div>
+
+            <!-- ============================================================
+                 条形码图片：把下面 img 的 src 换成你自己的条形码图片即可
+                 ============================================================ -->
+            <div class="barcode">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 60'%3E%3Crect width='200' height='60' fill='%23ffffff'/%3E%3Cg fill='%2324211c'%3E%3Crect x='2' y='0' width='2' height='60'/%3E%3Crect x='6' y='0' width='4' height='60'/%3E%3Crect x='12' y='0' width='2' height='60'/%3E%3Crect x='16' y='0' width='5' height='60'/%3E%3Crect x='23' y='0' width='2' height='60'/%3E%3Crect x='27' y='0' width='3' height='60'/%3E%3Crect x='32' y='0' width='2' height='60'/%3E%3Crect x='36' y='0' width='4' height='60'/%3E%3Crect x='42' y='0' width='2' height='60'/%3E%3Crect x='46' y='0' width='3' height='60'/%3E%3Crect x='51' y='0' width='2' height='60'/%3E%3Crect x='55' y='0' width='5' height='60'/%3E%3Crect x='62' y='0' width='2' height='60'/%3E%3Crect x='66' y='0' width='3' height='60'/%3E%3Crect x='71' y='0' width='2' height='60'/%3E%3Crect x='75' y='0' width='4' height='60'/%3E%3Crect x='81' y='0' width='2' height='60'/%3E%3Crect x='85' y='0' width='3' height='60'/%3E%3Crect x='90' y='0' width='2' height='60'/%3E%3Crect x='94' y='0' width='5' height='60'/%3E%3Crect x='101' y='0' width='2' height='60'/%3E%3Crect x='105' y='0' width='3' height='60'/%3E%3Crect x='110' y='0' width='2' height='60'/%3E%3Crect x='114' y='0' width='4' height='60'/%3E%3Crect x='120' y='0' width='2' height='60'/%3E%3Crect x='124' y='0' width='3' height='60'/%3E%3Crect x='129' y='0' width='2' height='60'/%3E%3Crect x='133' y='0' width='5' height='60'/%3E%3Crect x='140' y='0' width='2' height='60'/%3E%3Crect x='144' y='0' width='3' height='60'/%3E%3Crect x='149' y='0' width='2' height='60'/%3E%3Crect x='153' y='0' width='4' height='60'/%3E%3Crect x='159' y='0' width='2' height='60'/%3E%3Crect x='163' y='0' width='3' height='60'/%3E%3Crect x='168' y='0' width='2' height='60'/%3E%3Crect x='172' y='0' width='5' height='60'/%3E%3Crect x='179' y='0' width='2' height='60'/%3E%3Crect x='183' y='0' width='3' height='60'/%3E%3Crect x='188' y='0' width='2' height='60'/%3E%3Crect x='192' y='0' width='4' height='60'/%3E%3C/g%3E%3C/svg%3E"
+                alt="档案条形码" />
+            </div>
+
+            <div class="sign-关押区">
+              <div class="line"></div>
+              <span>监狱长签字 / Signature</span>
+            </div>
+
+            <div class="seal" aria-hidden="true">已<br>归档</div>
+          </footer>
+
+        </div>
+      </article>
+
+      <!-- ===== 四张入狱照：压在简介后方，只露出右上角的描述标签 ===== -->
+
+      <!-- 照片 01 -->
+      <figure class="shot" data-index="0" tabindex="0" role="button" aria-label="正面照">
+        <span class="shot-tag">正面照</span>
+        <div class="shot-frame">
+          <img
+            src="02.png"
+            alt="入狱照 · 正面" />
+        </div>
+      </figure>
+
+      <!-- 照片 02 -->
+      <figure class="shot" data-index="1" tabindex="0" role="button" aria-label="侧面照">
+        <span class="shot-tag">侧面照</span>
+        <div class="shot-frame">
+          <img
+            src="03.png"
+            alt="入狱照 · 侧面" />
+        </div>
+      </figure>
+
+      <!-- 照片 03 -->
+      <figure class="shot" data-index="2" tabindex="0" role="button" aria-label="全身照">
+        <span class="shot-tag">仰视照</span>
+        <div class="shot-frame">
+          <img
+            src="04.png"
+            alt="入狱照 · 仰视照" />
+        </div>
+      </figure>
+
+      <!-- 照片 04 -->
+      <figure class="shot" data-index="3" tabindex="0" role="button" aria-label="面部特写">
+        <span class="shot-tag">面部特写</span>
+        <div class="shot-frame">
+          <img
+            src="05.png"
+            alt="入狱照 · 面部特写" />
+        </div>
+      </figure>
+
+    </div>
+
+    <p class="stack-hint">点击露出的照片角落，可将其翻至最上层盖住简介；再点一次收回</p>
+  </div>
+
+  <script>
+    (function () {
+      var stack    = document.getElementById('stack');
+      var fileCard = document.getElementById('fileCard');
+      if (!stack || !fileCard) return;
+
+      var shots = Array.prototype.slice.call(stack.querySelectorAll('.shot'));
+      if (!shots.length) return;
+
+      /* 当前最上层：'file' 或照片索引 0~3 */
+      var topCard = 'file';
+
+      /* 与 CSS transition 时长保持一致 */
+      var DURATION = 720;
+
+      /* 每张照片静止时的旋转角度 */
+      var ROTATIONS = [-1.6, 1.2, -0.9, 1.8];
+
+      /* 静止时照片右边缘超出简介右边缘的宽度（像素） */
+      var MIN_REVEAL = 92;
+
+      /* 垂直方向最小间距，保证标签不会互相压住 */
+      var MIN_GAP = 88;
+
+      /* ---------- 计算所有位置 ---------- */
+      function layout() {
+        var W = stack.clientWidth;
+        if (!W) return;
+
+        var fileW = fileCard.offsetWidth;
+        var fileH = fileCard.offsetHeight;
+        var fileLeft = fileCard.offsetLeft;
+        if (!fileW || !fileH) return;
+
+        var fileRight = fileLeft + fileW;
+
+        var photoW = shots[0].offsetWidth;
+        var photoH = shots[0].offsetHeight;
+        if (!photoW || !photoH) return;
+
+        /* --- 静止位置 --- */
+        var revealW = Math.max(MIN_REVEAL, W * 0.10);
+        var restLeft = fileRight + revealW - photoW;
+
+        if (restLeft + photoW > W - 6) {
+          restLeft = W - 6 - photoW;
+        }
+        if (restLeft < fileLeft + fileW * 0.12) {
+          restLeft = fileLeft + fileW * 0.12;
+        }
+
+        /* --- 垂直间距 --- */
+        var n = shots.length;
+        var gap;
+        if (n > 1) {
+          gap = (fileH - photoH) / (n - 1);
+          if (gap < MIN_GAP) gap = MIN_GAP;
+        } else {
+          gap = 0;
+        }
+
+        var startTop = 0;
+
+        /* --- 顶层位置：居中盖住简介 --- */
+        var topLeft = (W - photoW) / 2;
+        var topTop  = (fileH - photoH) / 2;
+        if (topTop < 14) topTop = 14;
+
+        shots.forEach(function (shot, i) {
+          var restTop = startTop + i * gap;
+          var rot = ROTATIONS[i] || 0;
+
+          shot.dataset.restTransform =
+            'translate(' + restLeft.toFixed(1) + 'px, ' + restTop.toFixed(1) + 'px) ' +
+            'rotate(' + rot + 'deg)';
+
+          shot.dataset.topTransform =
+            'translate(' + topLeft.toFixed(1) + 'px, ' + topTop.toFixed(1) + 'px) ' +
+            'rotate(0deg)';
+        });
+
+        /* --- 让容器高度容纳所有照片 --- */
+        var lastBottom = startTop + (n - 1) * gap + photoH;
+        var extra = Math.max(0, lastBottom - fileH);
+        stack.style.paddingBottom = (extra + 34) + 'px';
+
+        render();
+      }
+
+      /* ---------- 按当前层级刷新画面 ---------- */
+      function render() {
+        var fileOnTop = (topCard === 'file');
+
+        fileCard.style.zIndex = fileOnTop ? '10' : '5';
+        fileCard.classList.toggle('is-covered', !fileOnTop);
+
+        shots.forEach(function (shot, i) {
+          var isTop = (topCard === i);
+
+          if (isTop) {
+            clearTimeout(shot._zTimer);
+            shot.style.zIndex = '20';
+            shot.style.transform = shot.dataset.topTransform;
+            shot.classList.add('is-top');
+            shot.setAttribute('aria-pressed', 'true');
+          } else {
+            shot.style.transform = shot.dataset.restTransform;
+            shot.classList.remove('is-top');
+            shot.setAttribute('aria-pressed', 'false');
+
+            clearTimeout(shot._zTimer);
+            (function (idx, node) {
+              node._zTimer = setTimeout(function () {
+                if (topCard !== idx) node.style.zIndex = String(idx + 1);
+              }, DURATION);
+            })(i, shot);
+          }
+        });
+      }
+
+      /* ---------- 交互 ---------- */
+      shots.forEach(function (shot, i) {
+        shot.addEventListener('click', function (e) {
+          e.stopPropagation();
+          topCard = (topCard === i) ? 'file' : i;
+          render();
+        });
+
+        shot.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+            e.preventDefault();
+            topCard = (topCard === i) ? 'file' : i;
+            render();
+          }
+        });
+      });
+
+      fileCard.addEventListener('click', function () {
+        if (topCard !== 'file') {
+          topCard = 'file';
+          render();
+        }
+      });
+
+      /* ---------- 尺寸变化时重算 ---------- */
+      var resizeTimer = null;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(layout, 140);
+      });
+
+      /* ---------- 启动 ---------- */
+      function init() {
+        shots.forEach(function (shot, i) {
+          shot.style.zIndex = String(i + 1);
+        });
+        layout();
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+      window.addEventListener('load', layout);
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(layout);
+      }
+    })();
+  </script>
+</body>
+</html>
